@@ -14,5 +14,4 @@ Edit files → commit → push. Pages auto‑redeploys in ~1–2 minutes.
 ## Files
 - `index.html` – home page
 - `style.css` – minimal styling
-- `screenshots/` – add your screenshots from the process
-
+- `screenshots/- Wesbite screenshot and customised CSS website screesnhot
