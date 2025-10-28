@@ -1,35 +1,65 @@
 /* -----------------------------
-   Modern Minimal Theme – Task 6
+   Modern Minimal Theme – Light/Dark
 --------------------------------*/
 
+/* 1) Base variables (LIGHT) */
 :root {
   --accent: #0078d7;
   --text: #222;
+  --muted: #666;
   --bg: #fafafa;
-  --card: #fff;
+  --card: #ffffff;
+  --border: #e7e7e7;
   --radius: 12px;
   --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* Reset defaults */
+/* 2) Auto DARK via system preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: #66b2ff;
+    --text: #eaeaea;
+    --muted: #a7a7a7;
+    --bg: #0f1220;       /* deep navy/ink */
+    --card: #171a2b;     /* slightly lighter panel */
+    --border: #262a40;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* 3) Manual DARK override: add .dark on <html> */
+html.dark {
+  --accent: #66b2ff !important;
+  --text: #eaeaea !important;
+  --muted: #a7a7a7 !important;
+  --bg: #0f1220 !important;
+  --card: #171a2b !important;
+  --border: #262a40 !important;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* 4) Reset + typography */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
+  font-family: "Poppins", "Segoe UI", system-ui, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
-  padding: 0;
 }
 
-/* HEADER */
+/* 5) Header */
 header {
   background: var(--accent);
-  color: white;
+  color: #fff;
   text-align: center;
   padding: 3rem 1rem;
   box-shadow: var(--shadow);
@@ -42,10 +72,10 @@ header h1 {
 
 header p {
   font-size: 1.1rem;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
-/* MAIN CONTENT */
+/* 6) Main content */
 main {
   max-width: 900px;
   margin: 2rem auto;
@@ -58,12 +88,13 @@ section {
   margin-bottom: 1.5rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 section:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
 }
 
 h2 {
@@ -74,26 +105,16 @@ h2 {
   padding-left: 8px;
 }
 
-p,
-li {
+p, li {
   font-size: 1rem;
   margin-bottom: 0.6rem;
 }
 
-ol {
+ol, ul {
   padding-left: 1.3rem;
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  color: #666;
-  font-size: 0.9rem;
-  padding: 2rem 1rem;
-  border-top: 1px solid #e0e0e0;
-}
-
-/* LINKS */
+/* 7) Links */
 a {
   color: var(--accent);
   text-decoration: none;
@@ -104,27 +125,45 @@ a:hover {
   text-decoration: underline;
 }
 
-/* BUTTON STYLE (optional for later use) */
-button {
+/* 8) Buttons (incl. theme toggle) */
+button, .btn {
   background: var(--accent);
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 16px;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
-button:hover {
-  background: #005fa3;
+button:hover, .btn:hover { opacity: 0.9; }
+button:active, .btn:active { transform: translateY(1px); }
+
+/* Optional: subtle outline button */
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
-/* RESPONSIVE DESIGN */
+/* 9) Footer */
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* 10) Utility */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* 11) Responsive */
 @media (max-width: 600px) {
-  header h1 {
-    font-size: 2rem;
-  }
-  section {
-    padding: 1rem;
-  }
+  header h1 { font-size: 2rem; }
+  section { padding: 1rem; }
 }
